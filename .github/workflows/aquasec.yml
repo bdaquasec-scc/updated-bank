@@ -19,7 +19,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Run Trivy vulnerability scanner - FS mode
-        uses: aquasecurity/trivy-action@0.5.1
+        uses: aquasecurity/trivy-action@master
         with:
           scan-type: 'fs'
           security-checks: 'vuln,config,secret'
@@ -29,7 +29,6 @@ jobs:
           AQUA_KEY: ${{ secrets.AQUA_KEY }}
           AQUA_SECRET: ${{ secrets.AQUA_SECRET }}
           TRIVY_RUN_AS_PLUGIN: 'aqua'
-          TRIGGERED_BY: 'PUSH'
           GITHUB_TOKEN: ${{ github.token }}
       - name: Build and push
         uses: docker/build-push-action@v3
