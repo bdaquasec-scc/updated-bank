@@ -19,7 +19,7 @@ jobs:
           username: "biagiodesimone"
           password: "dckr_pat_zDnc7Axl5-RsJFBEA4hFWY1rY7A"
           #username: ${{ secrets.DOCKERHUB_USERNAME }}
-          #password: ${{ secrets.DOCKERHUB_TOKEN }}
+          #password: ${{ secrets.DOCKERHUB_TOKEN }} 
       - name: Run Trivy vulnerability scanner - FS mode
         uses: aquasecurity/trivy-action@master
         with:
