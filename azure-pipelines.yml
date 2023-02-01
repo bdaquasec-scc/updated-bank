@@ -1,10 +1,21 @@
 # Docker
 # Build a Docker image
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
-
+resources: 
+  repositories: 
+  - repository: templates 
+    name: templates/templates 
+    type: git 
+    ref: main
+    
 trigger:
 - main
+- Reusable-pipelines
+- trivy-azuredevops-ext
 
+jobs:
+
+job: Job1
 resources:
 - repo: self
 
@@ -27,20 +38,10 @@ stages:
         dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
         tags: |
           $(tag)
-resources: 
-  repositories: 
-  - repository: templates 
-    name: templates/templates 
-    type: git 
-    ref: main
 
-trigger:
-  - main
-  - Reusable-pipelines
-  - trivy-azuredevops-ext
 
-jobs:
-- job: Job1
+
+- job: Job2
   displayName: Run trivy via imported pipeline
   pool:
     vmImage: "ubuntu-latest"  
